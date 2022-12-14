@@ -1,0 +1,132 @@
+/* ===================================================================================================
+                                          BASIC STYLE
+=================================================================================================== */
+
+html, body{
+  height: 100%; width:100%; margin: 0;
+  overflow: hidden;
+}
+
+.grass, .sky, .road{
+  position: relative;
+}
+
+.sky{
+  height: 40%; background: skyblue;
+}
+
+.grass{
+  height: 30%; background: seagreen;
+}
+
+.road{
+  height: 30%; width: 100%;
+  background: dimgrey;
+  box-sizing: border-box;
+  border-top: 10px solid grey; border-bottom: 10px solid grey;
+}
+.lines{
+  box-sizing: border-box;
+  border: 5px dashed #fff;
+  height: 0px; width: 100%; top: 50%; position: absolute;
+}
+/* ===================================================================================================
+                        ELEMENTS TO ANIMATE  STYLE
+=================================================================================================== */
+#mario {
+  position: absolute; top: -40px; left: 0px;
+  /* animation-duration: 8s; */
+  /* animation-fill-mode: forwards; */
+  /* above line will stop the mario at the end of the line */
+  /* animation-iteration-count: infinite; */
+  /* animation-timing-function: linear; */
+  /* animation-timing-function: cubic-bezier(0, 0.42, 0.1, 0.1); */
+  animation: drive 8s infinite linear,
+            jump 0.3s 0.15s ease;
+            /* adding 2 types of animation  */
+}
+#luigi {
+    position: absolute; top: 100px; left: 0px;
+    animation-name: drive ;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+button {
+  position: absolute; bottom: 100%; left: 45%; width: 250px; height: 100px;
+	cursor: pointer; background: #6dd6d1; color: black;
+	border: none; border-radius: 10px;
+	box-shadow: 0px 10px 25px #57ab6f, 0px -10px 25px #ffa6a6, inset 0px -5px 10px #f33fdb, inset 0px 5px 10px #a6fffa;
+	font-family: 'Damion', cursive; font-size: 20px;
+	transition: 500ms;
+}
+button:hover {
+	border: 2px solid #6dd6d1; 
+  animation: hueRotation 2s linear infinite;
+}
+.mushroom {
+  position: absolute; width: 30px; left: 80px;
+  animation: fade 4s ease infinite;
+}
+.mushroom:nth-child(1) {
+  width: 50px; top: 50px; left:50% ;
+  animation: fade 2s ease infinite;
+}
+.mushroom:nth-child(2) {
+  width: 20px; top: 100px; left:20%;
+  animation: fade 3s linear infinite;
+}
+.mushroom:nth-child(3) {
+  width: 40px; top: 150px; left:45%; 
+  animation: fade 3s ease infinite;
+}
+.mushroom:nth-child(4) {
+  width: 30px; top: 110px; left:85%;
+  animation: fade 5s ease-in infinite;
+}
+.mushroom:nth-child(5) {
+  width: 20px; top: 30px; left:70%;
+  animation: fade 2s ease-in-out infinite;
+}
+.cloud {
+  position: absolute;
+  animation: wind 20s linear infinite reverse
+}
+.cloud:nth-child(1) {
+  width: 200px; top: 120px; opacity: 0.5;
+  animation: wind 80s linear infinite reverse
+}
+.cloud:nth-child(2) {
+  width: 400px; top: 0px; left: 300px; opacity: 0.75;
+  animation: wind 40s linear infinite
+}
+.pauseClass {
+  animation-play-state: paused !important;
+  /* this line is important for giving funtion to mario and luigi in future in JS  */
+}
+.startClass {
+  animation-play-state: running !important;
+}
+/* ===================================================================================================
+                                                 KEYFRAMES   
+=================================================================================================== */
+ @keyframes drive {
+  from {transform: translateX(0px);}
+  to {transform: translateX(100vw);}
+}
+ @keyframes wind {
+  from {left: -300px;}
+  to {left: 100%;}
+}
+ @keyframes jump {
+  0% {top: -40px}
+  /* top - 40px because of we I wanto start from the same spot where mario start it. */
+  50% {top: -100px}
+  100% {top: -40px}
+}
+ @keyframes fade {
+  0%, 100% {opacity: 0;}
+  50% {opacity: 1;}
+}
+@keyframes hueRotation {
+	to {filter: hue-rotate(360deg);}
+}
